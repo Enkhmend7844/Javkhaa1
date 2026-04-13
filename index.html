@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>🎞️ Javkhaa's Birthday · Cinematic Gallery XL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Quicksand:wght@300..500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 10%, #021a2b, #010c15);
+      font-family: 'Quicksand', 'Segoe UI', sans-serif;
+      padding: 2rem 1.5rem;
+      color: #eef5ff;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjUiIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
+      background-repeat: repeat;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-family: 'Caveat', cursive;
+      font-size: 3.4rem;
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff, #7bc3e8, #3c9ed4);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ENVELOPE (unchanged style but remains functional) */
+    .envelope-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0 2rem;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+    .envelope-wrapper:active { transform: scale(0.97); }
+    .envelope {
+      position: relative;
+      width: 340px;
+      height: 260px;
+      background: #1f5a7e;
+      border-radius: 16px 16px 10px 10px;
+      box-shadow: 0 18px 28px -8px rgba(0,0,0,0.4), 0 0 0 2px #8fc1e0, 0 0 0 5px #145a7a;
+    }
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: -45px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 170px solid transparent;
+      border-right: 170px solid transparent;
+      border-bottom: 70px solid #4387ae;
+      filter: drop-shadow(0 -2px 4px rgba(0,0,0,0.3));
+      z-index: 3;
+    }
+    .envelope::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: 25px;
+      width: 90px;
+      height: 40px;
+      background: #7db9de;
+      border-radius: 30px 30px 0 0;
+      transform: rotate(-4deg);
+      box-shadow: 0 -2px 6px #2c6c8f;
+      z-index: 5;
+      opacity: 0.9;
+    }
+    .envelope-body {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #397c9e;
+      border-radius: 12px;
+      border: 2px dashed #c3e4ff;
+      box-shadow: inset 0 2px 12px #1c556e;
+    }
+    .click-text {
+      font-family: 'Caveat', cursive;
+      font-size: 2.4rem;
+      color: #fff7e8;
+      background: #0f4a6ecc;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      backdrop-filter: blur(2px);
+      font-weight: bold;
+      border: 1px solid #c0e2ff;
+    }
+
+    .letter-paper {
+      background: #fffcf0;
+      max-width: 620px;
+      margin: 1rem auto 2.5rem;
+      padding: 2rem 2rem 2rem 2.5rem;
+      border-radius: 28px 12px 28px 12px;
+      box-shadow: 0 20px 32px rgba(0,0,0,0.2), inset 0 0 0 2px #f3ecdf, inset 0 0 0 6px #fff7ed;
+      font-family: 'Caveat', cursive;
+      font-size: 1.6rem;
+      line-height: 1.45;
+      color: #1f3e4f;
+      border: 2px solid #2c789e;
+    }
+    .letter-paper p { white-space: pre-line; }
+    .close-letter {
+      background: #245e81;
+      border: none;
+      border-radius: 60px;
+      padding: 0.5rem 1.8rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #0c2e42;
+      transition: 0.05s linear;
+      font-family: 'Quicksand', sans-serif;
+      margin-top: 1rem;
+    }
+    .close-letter:active { transform: translateY(4px); box-shadow: 0 1px 0 #0c2e42; }
+    .hidden { display: none !important; }
+
+    .title-wrap { text-align: center; margin: 2rem 0 1rem; }
+    .memories-title {
+      font-family: 'Caveat', cursive;
+      font-size: 3rem;
+      display: inline-block;
+      color: #b4e2ff;
+      border-bottom: 3px dotted #3a8bb3;
+      padding-bottom: 0.2rem;
+    }
+
+    /* ========== ENLARGED MOVIE TAPE CARDS ========== */
+    /* BIGGER CONTAINERS FOR PHOTOS & VIDEOS */
+    .tape-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 2.2rem;
+      margin-top: 1.8rem;
+    }
+    
+    .film-tape {
+      background: #0a0a0a;
+      border-radius: 16px;
+      box-shadow: 0 18px 28px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px #2f6d91;
+      overflow: hidden;
+      transition: box-shadow 0.25s ease, transform 0.1s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .film-tape:hover {
+      box-shadow: 0 24px 36px -14px rgba(0, 0, 0, 0.95), 0 0 0 2px #4aa3d1;
+    }
+    
+    /* BIGGER SPROCKET HOLES (more prominent) */
+    .sprocket-row {
+      height: 24px;
+      background-color: #0d0f13;
+      background-image: repeating-linear-gradient(90deg, 
+        #286c8f 0px, #286c8f 8px,
+        transparent 8px, transparent 32px);
+      background-size: 44px 24px;
+      background-repeat: repeat-x;
+      background-position: center;
+      flex-shrink: 0;
+    }
+    .sprocket-top { 
+      border-bottom: 1px solid #1f5a78; 
+      margin-bottom: 4px;
+    }
+    .sprocket-bottom { 
+      border-top: 1px solid #1f5a78; 
+      margin-top: 4px;
+    }
+    
+    /* MEDIA CONTAINER - ENLARGED & SPACIOUS */
+    .media-block {
+      padding: 0.9rem 0.9rem 0 0.9rem;
+      background: #0a0a0a;
+    }
+    .media-frame {
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      line-height: 0;
+      box-shadow: inset 0 0 0 2px #2a5f7e, 0 6px 14px rgba(0,0,0,0.6);
+    }
+    .media-frame img,
+    .media-frame video {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 16 / 9;   /* wider cinematic ratio → bigger visual impact */
+      background: #1c1c1c;
+      transition: transform 0.2s ease;
+    }
+    /* optional subtle hover zoom (only media, not affecting layout) */
+    .film-tape:hover .media-frame img,
+    .film-tape:hover .media-frame video {
+      transform: scale(1.01);
+      transition: transform 0.3s ease;
+    }
+    
+    /* DESCRIPTION AREA - more breathing space */
+    .film-description {
+      padding: 1.2rem 1.2rem 1.4rem 1.2rem;
+      background: #0f1218;
+      border-top: 1px solid #1f4b62;
+    }
+    .desc-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #c0e2ff;
+      background: #0e3c55;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 0.8rem;
+      border: 0.5px solid #3986af;
+    }
+    .desc-badge::before { content: "🎞️"; font-size: 0.8rem; }
+    .desc-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #eef4fc;
+      font-weight: 500;
+      word-break: break-word;
+      border-left: 3px solid #3e8bb0;
+      padding-left: 0.9rem;
+    }
+    
+    /* responsive tweaks: on smaller screens still spacious but flexible */
+    @media (max-width: 920px) {
+      .tape-grid {
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 1.5rem;
+      }
+      .memories-title {
+        font-size: 2.4rem;
+      }
+      h1 {
+        font-size: 2.6rem;
+      }
+    }
+    
+    @media (max-width: 680px) {
+      body { padding: 1rem; }
+      .envelope { width: 260px; height: 200px; }
+      .envelope::before { border-left: 130px solid transparent; border-right: 130px solid transparent; border-bottom: 50px solid #4387ae; top: -35px; }
+      .click-text { font-size: 1.6rem; }
+      .letter-paper { font-size: 1.3rem; padding: 1.5rem; max-width: 95%; }
+      .tape-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .media-frame img,
+      .media-frame video {
+        aspect-ratio: 16 / 9;
+      }
+      .desc-text {
+        font-size: 0.9rem;
+      }
+    }
+    
+    /* extra style for video controls to fit bigger container */
+    .media-frame video {
+      width: 100%;
+      height: auto;
+    }
+    
+    .footer-stars {
+      text-align: center;
+      margin: 3rem 0 0.5rem;
+      font-size: 2.2rem;
+      letter-spacing: 10px;
+      color: #5599bd;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>For my friend, Javkhaa 🎬</h1>
+
+  <div id="envelopeWrapper" class="envelope-wrapper" onclick="openLetter()">
+    <div class="envelope"><div class="envelope-body"><span class="click-text">📼 open me</span></div></div>
+  </div>
+  <div id="letterPaper" class="letter-paper hidden">
+    <p>Хайрт найз Жавхаа-д,<br><br>Бага зэрэг оройтож төрсөн өдрийн мэндчилгээ хүргэж буйг өршөөгөөрэй. 
+Чамайг байхгүй болохоор их сургуулийн амьдрал бага зэрэг уйтгартай санагдаж байна. Чамайг сургуульдаа буцаад ирээсэй гэж хүссэн ч тэгсэнгүй шүү So sad (ง ͠ಥ_ಥ)ง.<br><br>
+Энэхүү зургууд чамд хааяа их сургуулийн амьдралыг чинь сануулна гэж найдаж байна. Эргээд харахад үнэхээр дурсамжтай хөгжилтэй өдрүүдийг өнгөрөөцгөөжээ.<br><br>
+Чамтай өмнөх шигээ үргэлж уулзах боломжгүй учраас эдгээр зураг бичлэгнүүд хань болох байх. Биднийгээ санахаараа үзэж байгаарай<br><br>
+Чи ойрдоо юу хийж байна даа? Найз охиныг нь сториноос чинь харсан хэхэ. Их хөөрхөн охин байна лээ. Гүнж шиг л. <br><br>
+Бид хэд эндээ хичээлдээ явсан шигээ л. Үнэндээ чи байхгүй болохоор нэг зүйл дутуу юм шиг санагдаад л байгаа. Уйтгартай ч юм шиг. Заримдаа ганцаардхаараа Жавхаа маань энд байсан ч болоосой гэж боддог шүү.<br><br>
+Эцэст нь хайрт найз минь чамайг бидэнтэй ирээдүйд хотод ирэхээрээ заавал уулзаарай гэж хүсмээр байна. Чи их мундаг дулаан сэтгэлтэй хүн шүү. Чи бүхнийг хийж чадна шүү.<br><br>
+      <span style="font-family: Caveat; font-size:1.9rem;">— From Emi</span><br>
+      <span style="font-family: Caveat; font-size:1.8rem;">— To my friend.</span>
+    </p>
+    <button class="close-letter" onclick="closeLetter()">✉️ back to envelope</button>
+  </div>
+
+  <div class="title-wrap"><div class="memories-title">📽️ Javkhaa's Birthday · Expanded Cinema Gallery</div></div>
+
+  <div class="tape-grid" id="tapeGrid">
+    <!-- TAPE 1 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="1.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">November 13, 2023. Хичээлээ иймэрхүү л хийдэг байж дээ.📚</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 2 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="2.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">November 15, 2023. uujii taivan hot gang2.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 3 - VIDEO 1 -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><video controls><source src="1.mp4" type="video/mp4"></video></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">December 12, 2023. Загварын ертөнцөөр аялцгаая охидоо.👯‍♀️</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 4 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="3.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">November 27, 2023. Жавхаагийн тосны сурталчилгаа.🧴☀️</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 5 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="4.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">February 22, 2024. Үзэсгэлэнт Дөлөө🎀</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 6 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="5.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">February 13, 2024. Жавхаагийнд нэг удаа.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 7 - VIDEO 2 -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><video controls><source src="2.mp4" type="video/mp4"></video></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">November 15, 2023. Сайхан ч байж дээ(╥‸╥)</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 8 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="6.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">February 22, 2024. Үзэсгэлэнт Дөлөө🎀</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 9 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="7.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">September 15, 2024. Гүнжлэг бидэн 2   (˶ᵔ ᵕ ᵔ˶) ‹𝟹</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 10 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="8.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Чингүүнээгийн хичээл дээрх унталт part1.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 11 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="36.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Дандаа л унтаж байна part2.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 12 - VIDEO 3 -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><video controls><source src="3.mp4" type="video/mp4"></video></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">September 15, 2024. Загварын ертөнцөөр аялцгаая охидоо.👯‍♀️ Загвар өмсөж үзэхийг хүсэж байна гэж хэлж байсан даа. Заавал биелүүлээрэй. Чи чадна аа ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 13 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="9.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">October 27, 2024. Хоёулаа ч үзэсгэлэн төгөлдөр хүмүүс юм аа. Хөөрхөн гэж жигтэйхэн.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 14 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="10.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">September 15, 2024. Далжийтлаа инээчихжээ.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 15 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="11.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">October 27, 2024. Чингүүний төрсөн өдрөөр нэг удаа.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 16 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="12.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">April 15, 2025. Хичээлийн стресс үү? Амьдралаа эргэцүүлж буй Чингүүн.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 17 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="13.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">April 17, 2025. Бядны хөөрхөн Дөл найз.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 18 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="14.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Бүгдээрээ fck жүү зүгээр. Тиймээ?</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 19 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="15.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">April 17, 2025. Дөлөөгийн юугаа хараав гэсэн царай.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 20 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="16.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">May 1, 2025. Бараг нисэх нь ээ ✈︎ ⋆°•☁︎</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 21 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="17.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Hmmmmmmmmmmmmmmmmmmmmm🤔</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 22 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="18.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Гарьдаа мууртай хамт. (˵◝ ⩊  ◜˵マ</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 23 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="19.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">May 6, 2025. Ингэж алхах юм гэнэ ээ.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 24 - VIDEO 9 -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><video controls><source src="9.mp4" type="video/mp4"></video></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Ичихгүй багшийн урд унтаж буй Чингүүн part3.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 25 - VIDEO 4 -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><video controls><source src="4.mp4" type="video/mp4"></video></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">September 24, 2024. Урлагийн бурхан тэнгэр биднийг ивээжээ.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 26 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="20.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Алхалт gang2</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 27 - VIDEO 5 -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><video controls><source src="5.mp4" type="video/mp4"></video></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Бараг хамтлаг байгуулахаар.🎹</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 28 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="21.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">September 29, 2025. Хүүхэд аллаа. Nate ахын царайг хараарай.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 29 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="22.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">хахахахаха</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 30 - VIDEO 6 -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><video controls><source src="6.mp4" type="video/mp4"></video></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">October 23, 2024. Утастайгаа гэрлэж буй Жавхаа. 📱♥️</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 31 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="23.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Байнгын хичээлээ хийгээд л байж байгаа шүүү бид чинь🤫</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 32 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="24.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">MTP болсон байдаг юм. Чи байсан ч болоосой. sad</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 33 - VIDEO 7 -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><video controls><source src="7.mp4" type="video/mp4"></video></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Сайхан байж дээ.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 34 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="25.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">November 25, 2025. ppt part1.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 35 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="26.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">ppt part2.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 36 - VIDEO 8 -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><video controls><source src="8.mp4" type="video/mp4"></video></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Дөлөө асуулт хариултын тэмцээний эцсийн шатанд хүч үзэж байна.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 37 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="27.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Чингүүнээгийн унталт part4.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 38 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="28.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">ppt part3.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 39 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="29.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">ppt part4.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 40 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="30.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">ppt part5.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 41 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="31.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Бичсэн зүйлээ тайлбарлаж буй Дөл найз.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 42 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="32.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Унталт part5.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 43 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="33.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Nate prof.</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 44 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="34.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">Went to the ART gallery😮</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+    <!-- TAPE 45 - PHOTO -->
+    <div class="film-tape">
+      <div class="sprocket-row sprocket-top"></div>
+      <div class="media-block"><div class="media-frame"><img src="25.jpg" alt="memory" loading="lazy"></div></div>
+      <div class="film-description"><div class="desc-badge">CINEMATIC MEMORY</div><div class="desc-text">ppt</div></div>
+      <div class="sprocket-row sprocket-bottom"></div>
+    </div>
+  </div>
+  <div class="footer-stars">ᕙ(⇀‸↼‶)ᕗ</div>
+</div>
+
+<script>
+  // envelope logic
+  function openLetter() {
+    document.getElementById('envelopeWrapper').classList.add('hidden');
+    document.getElementById('letterPaper').classList.remove('hidden');
+  }
+  function closeLetter() {
+    document.getElementById('letterPaper').classList.add('hidden');
+    document.getElementById('envelopeWrapper').classList.remove('hidden');
+  }
+  window.openLetter = openLetter;
+  window.closeLetter = closeLetter;
+</script>
+</body>
+</html>
